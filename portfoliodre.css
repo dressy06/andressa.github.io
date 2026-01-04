@@ -1,0 +1,165 @@
+:root {
+    --background-color: rgb(255, 255, 255);
+    --text-color: rgb(0, 0, 0);
+    --links-color: #ebbbd3; 
+    --selection-color: #c0d9e2; 
+    --text-size: 16px;
+    --text-size-mobile: 18px;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    font-size: var(--text-size);
+    color: var(--text-color);
+    line-height: 1.5;
+    padding: 40px 24px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, a, .block, .ascii {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.wrapper {
+    max-width: 640px;
+}
+
+.block {
+    margin-bottom: 32px;
+    font-size: 15px;
+}
+
+.turn-right {
+    transform: rotate(0.4deg);
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--links-color);
+}
+
+ul {
+    list-style: none; 
+    padding-left: 18px;
+    margin: 8px 0 0 0;
+}
+
+li::before {
+    content: "⊹";       
+    display: inline-block;
+    width: 20px;        
+    margin-left: -20px; 
+    font-weight: bold;
+}
+
+li {
+    margin-bottom: 4px;
+}
+
+.ascii {
+    font-size: 12px;
+    opacity: 1;
+    margin-bottom: 24px;
+}
+
+.footer {
+    margin-top: 48px;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+::selection {
+    background: var(--selection-color);
+    color: #fff;
+}
+
+::-moz-selection {
+    background: var(--selection-color);
+    color: #fff;
+}
+
+.soft {
+    position: relative;
+    color: #000;
+    text-decoration: none;
+    text-shadow: 0 0 8px #f6d8e7, 0 0 12px #cd75a1;
+    transition: text-shadow 0.3s ease;
+}
+
+.soft:hover {
+    text-shadow: 0 0 12px #e392bb, 0 0 18px #ff69b4;
+}
+
+#foto {
+    position: fixed; 
+    bottom: 30px;    
+    right: 20px;     
+    max-width: 35%;  
+    height: auto;    
+    z-index: 0;     
+    transition: all 0.3s ease;
+}
+
+
+.header {
+    display: flex;
+    align-items: baseline; 
+    gap: 22px;
+    margin-bottom: 24px;
+}
+
+.header .name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: lowercase;
+    line-height: 1.2;
+}
+
+.header .info {
+    font-size: 16px;
+    color: rgba(0,0,0,0.4); 
+    text-transform: lowercase;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: var(--text-size-mobile);
+    }
+
+    .wrapper {
+        padding-bottom: 0;
+    }
+
+    #foto {
+        position: relative; 
+        display: block;
+        margin: 24px auto 0 auto; 
+        max-width: 80%; 
+        bottom: 0;
+        right: 0;
+    }
+
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 24px;
+    }
+
+    .header .name {
+        font-size: 24px;
+    }
+
+    .header .info {
+        font-size: 14px;
+    }
+}
