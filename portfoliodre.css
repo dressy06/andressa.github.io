@@ -3,7 +3,7 @@
     --text-color: rgb(0, 0, 0);
     --links-color: #ebbbd3; 
     --selection-color: #c0d9e2; 
-    --text-size: 16px;
+    --text-size: 15px;
     --text-size-mobile: 18px;
 }
 
@@ -104,10 +104,9 @@ li {
     right: 20px;     
     max-width: 35%;  
     height: auto;    
-    z-index: 0;     
+    z-index: 1;     
     transition: all 0.3s ease;
 }
-
 
 .header {
     display: flex;
@@ -147,7 +146,6 @@ li {
         right: 0;
     }
 
-
     .header {
         flex-direction: column;
         align-items: flex-start;
@@ -161,5 +159,117 @@ li {
 
     .header .info {
         font-size: 14px;
+    }
+}
+
+/* =====================
+   ÁGUA VIVA — IMAGENS
+===================== */
+
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 48px 0;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* mobile */
+@media screen and (max-width: 600px) {
+    .image-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin: 32px 0;
+    }
+}
+
+/* =====================
+   OUTROS — COLAGEM
+===================== */
+
+.collage-area {
+    position: relative;
+    height: 420px;
+    margin: 48px 0;
+}
+
+.collage-img {
+    position: absolute;
+    width: 160px;
+    max-width: 40%;
+    height: auto;
+    opacity: 0.95;
+    transition: transform 0.3s ease;
+}
+
+.collage-img:hover {
+    transform: scale(1.02);
+}
+
+/* =====================
+   OUTROS — WORK ITEMS
+===================== */
+
+.work-item {
+    margin: 48px 0;
+}
+
+.work-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 8px;
+}
+
+details {
+    font-size: 14px;
+}
+
+summary {
+    cursor: pointer;
+    list-style: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+summary:hover {
+    opacity: 1;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+details p {
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* =====================
+   REDAÇÃO — WORK ITEMS
+===================== */
+
+.work-list .work-item {
+    margin: 6px 0;
+}
+
+/* =====================
+   MOBILE
+===================== */
+
+@media screen and (max-width: 600px) {
+    .collage-area {
+        height: auto;
+    }
+
+    .collage-img {
+        position: static;
+        width: 100%;
+        margin-bottom: 16px;
     }
 }
