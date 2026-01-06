@@ -15,6 +15,8 @@ let lastEl = null;
 
 // tocar nota
 function play(freq) {
+  if (!soundEnabled) return;
+
   const o = ctx.createOscillator();
   const g = ctx.createGain();
   const fl = ctx.createBiquadFilter();
@@ -63,9 +65,11 @@ document.addEventListener("mouseover", (e) => {
   }
 });
 
-// botão de áudio
+// botão de áudio (UM ÚNICO CONTROLE)
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("audioControl");
+  const hint = document.getElementById("soundHint");
+
   if (!btn) return;
 
   // estado inicial
@@ -76,24 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
     soundEnabled = !soundEnabled;
     btn.classList.toggle("muted", !soundEnabled);
     document.body.style.cursor = soundEnabled ? "crosshair" : "";
-  });
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("audioControl");
-  const hint = document.getElementById("soundHint");
 
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    soundEnabled = !soundEnabled;
-    btn.classList.toggle("muted", !soundEnabled);
-    document.body.style.cursor = soundEnabled ? "crosshair" : "";
-
-    // 👇 texto some no clique
     if (hint) hint.classList.add("hidden");
   });
 
-  // (opcional) fallback: some sozinho depois de alguns segundos
+  // fallback: some sozinho
   setTimeout(() => {
     if (hint) hint.classList.add("hidden");
   }, 3000);
