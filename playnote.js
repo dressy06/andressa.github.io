@@ -49,9 +49,10 @@ document.addEventListener(
   { once: true }
 );
 
-// hover sonoro
+// hover sonoro (ignora o botão)
 document.addEventListener("mouseover", (e) => {
   if (!soundEnabled) return;
+  if (e.target.closest("#audioControl")) return;
 
   const el = e.target;
   if (el !== lastEl) {
@@ -65,7 +66,7 @@ document.addEventListener("mouseover", (e) => {
   }
 });
 
-// botão de áudio (UM ÚNICO CONTROLE)
+// botão de áudio — só toggle
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("audioControl");
   const hint = document.getElementById("soundHint");
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hint) hint.classList.add("hidden");
   });
 
-  // fallback: some sozinho
+  // fallback: texto some sozinho
   setTimeout(() => {
     if (hint) hint.classList.add("hidden");
   }, 3000);
