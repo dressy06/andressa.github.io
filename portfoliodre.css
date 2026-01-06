@@ -415,3 +415,8 @@ details p {
 .audio-btn.muted .icon-mute {
   display: inline;
 }
+@media (max-width: 768px) {
+  .sound-ui {
+    display: none;
+  }
+}
