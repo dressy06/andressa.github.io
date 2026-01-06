@@ -15,8 +15,6 @@ let lastEl = null;
 
 // tocar nota
 function play(freq) {
-  if (!soundEnabled) return;
-
   const o = ctx.createOscillator();
   const g = ctx.createGain();
   const fl = ctx.createBiquadFilter();
@@ -49,10 +47,9 @@ document.addEventListener(
   { once: true }
 );
 
-// hover sonoro (ignora o botão)
+// hover sonoro
 document.addEventListener("mouseover", (e) => {
   if (!soundEnabled) return;
-  if (e.target.closest("#audioControl")) return;
 
   const el = e.target;
   if (el !== lastEl) {
@@ -66,27 +63,24 @@ document.addEventListener("mouseover", (e) => {
   }
 });
 
-// botão de áudio — só toggle
+// botão de áudio (APENAS VISUAL + ESTADO)
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("audioControl");
-  const hint = document.getElementById("soundHint");
-
   if (!btn) return;
 
-  // estado inicial
+  // estado inicial correto
   btn.classList.remove("muted");
   document.body.style.cursor = "crosshair";
 
   btn.addEventListener("click", () => {
     soundEnabled = !soundEnabled;
-    btn.classList.toggle("muted", !soundEnabled);
-    document.body.style.cursor = soundEnabled ? "crosshair" : "";
 
-    if (hint) hint.classList.add("hidden");
+    if (soundEnabled) {
+      btn.classList.remove("muted");
+      document.body.style.cursor = "crosshair";
+    } else {
+      btn.classList.add("muted");
+      document.body.style.cursor = "";
+    }
   });
-
-  // fallback: texto some sozinho
-  setTimeout(() => {
-    if (hint) hint.classList.add("hidden");
-  }, 3000);
 });
