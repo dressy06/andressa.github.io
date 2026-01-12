@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>meu arquivo de bookmarklets</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-weight: 400 !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 32px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #000;
+    background: #fff;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1.9fr;
+    gap: 172px;
+    align-items: start;
+  }
+
+  /* ESQUERDA */
+  .left {
+    padding-top: 180px;
+  }
+
+  .left pre.title {
+    margin: 0 auto 38px auto;
+    width: max-content;
+    text-align: left;
+    font-weight: 900 !important;
+    line-height: 1.1;
+  }
+
+  .left p {
+    margin: 0 0 18px 0;
+    line-height: 1.6;
+  }
+
+  .left ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px 0;
+  }
+
+  .left li::before {
+    content: "☆";
+  }
+
+  /* DIREITA */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 40px;
+    row-gap: 44px;
+  }
+
+  .bookmarklet {
+    text-align: center;
+  }
+
+  /* BLOCO CENTRALIZADO */
+  .bookmarklet a {
+    display: block;
+    width: 13ch;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #000;
+    cursor: grab;
+  }
+
+  .bookmarklet a:active {
+    cursor: grabbing;
+  }
+
+  /* ASCII */
+  .bookmarklet a::before {
+    content:
+".-----.\A\
+| ----|\\\A\
+| ----- |\A\
+| ----- |\A\
+| ----- |\A\
+| ----- |\A\
+'-------'";
+    white-space: pre;
+    display: block;
+    width: max-content;
+    margin: 0 auto 10px;
+    text-align: left;
+    line-height: 1.05;
+  }
+
+  .bookmarklet span {
+    display: block;
+    text-align: center;
+    line-height: 1.2;
+  }
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+  <!-- ESQUERDA -->
+  <div class="left">
+<pre class="title">
+         _            _,   ,_   _,        o       _       _|   _ 
+/|/|/|  |/ |  |      / |  /  | / |  |  |  | |  |_/ \_    / |  |/ 
+ | | |_/|_/ \/|_/    \/|_/   |/\/|_/ \/|_/|/ \/  \_/     \/|_/|_/
+                                 |)                              
+ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____
+||b  |||o  |||o  |||k  |||m  |||a  |||r  |||k  |||l  |||e  |||s  ||
+||___|||___|||___|||___|||___|||___|||___|||___|||___|||___|||___||
+|/___\|/___\|/___\|/___\|/___\|/___\|/___\|/___\|/___\|/___\|/___\|
+</pre>
+
+<p>
+bookmarklets são pequenos scripts em javascript salvos como favoritos no navegador. ao serem clicados, executam ações diretamente na página aberta, sem redirecionar ou recarregar o site. bookmarklets são ferramentas leves, locais e temporárias.
+</p>
+
+<ul>
+  <li>
+    como usar: arraste o bookmarklet para a barra de favoritos do navegador. quando quiser ativá-lo, basta clicar enquanto estiver em qualquer página.
+  </li>
+</ul>
+
+<p>
+este espaço foi inspirado no trabalho de chia amisola e funciona como um arquivo pessoal: aqui guardo minha pequena coleção de bookmarklets que criei ao longo do tempo.
+</p>
+  </div>
+
+  <!-- DIREITA -->
+  <div class="right">
+    <div class="grid">
+
+      <div class="bookmarklet">
+        <a href="javascript:(function(){  const flowers=['✿','❀','❁'];  const originals=new Map();  let active=false;  const style=document.createElement('style');  style.textContent='*{cursor:crosshair!important}';  function randomFlower(){    return flowers[Math.floor(Math.random()*flowers.length)];  }  function getDeepestElement(el){    let deepest=el, maxDepth=0;    function traverse(node,depth){      if(node.nodeType===1 && node.tagName!=='HTML' && node.tagName!=='BODY'){        if(depth>maxDepth){ maxDepth=depth; deepest=node; }        for(let child of node.children) traverse(child,depth+1);      }    }    for(let child of el.children) traverse(child,0);    return deepest;  }  function convertTextNodes(el){    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);    let node;    while(node=walker.nextNode()){      if(node.textContent.trim()){        node.textContent=[...node.textContent]          .map(c=>c.trim()?randomFlower():c)          .join(%27%27);      }    }  }  function handleMouseOver(e){    if(e.target.tagName===%27HTML%27||e.target.tagName===%27BODY%27) return;    const deepest=getDeepestElement(e.target);    if(deepest.dataset.flowered) return;    originals.set(deepest,deepest.cloneNode(true));    deepest.dataset.flowered=%27true%27;    if(deepest.tagName===%27INPUT%27||deepest.tagName===%27TEXTAREA%27){      deepest.value=[...deepest.value]        .map(c=>c.trim()?randomFlower():c)        .join(%27%27);    }else{      convertTextNodes(deepest);    }  }  function handleClick(e){    e.preventDefault();    e.stopPropagation();    deactivate();  }  function activate(){    if(active) return;    active=true;    document.head.appendChild(style);    document.addEventListener(%27mouseover%27,handleMouseOver,true);    document.addEventListener(%27click%27,handleClick,true);  }  function deactivate(){    if(!active) return;    active=false;    style.remove();    document.removeEventListener(%27mouseover%27,handleMouseOver,true);    document.removeEventListener(%27click%27,handleClick,true);    originals.forEach((clone,el)=>{      if(el.tagName===%27INPUT%27||el.tagName===%27TEXTAREA%27){        el.value=clone.value;      }else{        el.innerHTML=clone.innerHTML;      }      delete el.dataset.flowered;    });    originals.clear();  }  activate();})();">
+          <span>FLOWER-CONVERTER.JS</span>
+        </a>
+      </div>
+
+      <div class="bookmarklet">
+        <a href="javascript:(function(){try{if(!window.starState)window.starState=0;window.starState=(window.starState+1)%5;if(window.starState===0){var stars=document.querySelectorAll('.star');stars.forEach(s=>s.remove());var style=document.getElementById('star-style');if(style)style.remove();if(window.starsInterval)clearInterval(window.starsInterval);document.onmousemove=null;return;}var colors=['','black','white','#E9D5E0','#0000EE'];var color=colors[window.starState];var stars=document.querySelectorAll('.star');stars.forEach(s=>s.style.color=color);var style=document.getElementById('star-style');if(style){style.innerHTML=&quot;.star{position:absolute;color:&quot;+color+&quot;;font-size:17px;pointer-events:none;user-select:none;transition:opacity 1s linear}&quot;;return;}var s=document.createElement('style');s.id='star-style';s.innerHTML=&quot;.star{position:absolute;color:&quot;+color+&quot;;font-size:17px;pointer-events:none;user-select:none;transition:opacity 1s linear}&quot;;document.head.appendChild(s);var n=50,e=[],sx=[],sy=[],x=0,y=0,ox=0,oy=0;function createStar(x,y){var t=document.createElement('div');t.className='star';t.textContent='☆';t.style.left=x+'px';t.style.top=y+'px';t.style.visibility='hidden';document.body.appendChild(t);return t;}for(var i=0;i<n;i++){e[i]=createStar(-100,-100);sx[i]=false;sy[i]=false;}function update(){if(Math.abs(x-ox)>1||Math.abs(y-oy)>1){ox=x;oy=y;for(var i=0;i<n;i++){if(sy[i]===false){e[i].style.left=x+'px';e[i].style.top=y+'px';e[i].style.visibility='visible';sy[i]=y;sx[i]=x;break;}}}for(var i=0;i<n;i++){if(sy[i]!==false){sy[i]-=1;sx[i]+=(Math.random()-0.5)*2;if(sy[i]<0||sx[i]<0||sx[i]>window.innerWidth){e[i].style.visibility='hidden';sy[i]=false;}else{e[i].style.top=sy[i]+'px';e[i].style.left=sx[i]+'px';}}}}window.starsInterval=setInterval(update,20);document.onmousemove=function(t){x=t.pageX;y=t.pageY;};}catch(err){alert('Cursor stars error: '+err.message);}})();">
+          <span>stars falling.JS</span>
+        </a>
+      </div>
+
+      <!-- exemplos -->
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- BLOQUEIA EXECUÇÃO NO CLIQUE -->
+<script>
+  document.querySelectorAll('.bookmarklet a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+</script>
+
+</body>
+</html>
