@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <title>meu arquivo de bookmarklets</title>
+  <link rel="icon" type="image/png" href="bookmarkletsfave.png">
 
 <style>
   * {
@@ -151,11 +151,99 @@ este espaço foi inspirado no trabalho de chia amisola e funciona como um arquiv
 
       <div class="bookmarklet">
         <a href="javascript:(function(){try{if(!window.starState)window.starState=0;window.starState=(window.starState+1)%5;if(window.starState===0){var stars=document.querySelectorAll('.star');stars.forEach(s=>s.remove());var style=document.getElementById('star-style');if(style)style.remove();if(window.starsInterval)clearInterval(window.starsInterval);document.onmousemove=null;return;}var colors=['','black','white','#E9D5E0','#0000EE'];var color=colors[window.starState];var stars=document.querySelectorAll('.star');stars.forEach(s=>s.style.color=color);var style=document.getElementById('star-style');if(style){style.innerHTML=&quot;.star{position:absolute;color:&quot;+color+&quot;;font-size:17px;pointer-events:none;user-select:none;transition:opacity 1s linear}&quot;;return;}var s=document.createElement('style');s.id='star-style';s.innerHTML=&quot;.star{position:absolute;color:&quot;+color+&quot;;font-size:17px;pointer-events:none;user-select:none;transition:opacity 1s linear}&quot;;document.head.appendChild(s);var n=50,e=[],sx=[],sy=[],x=0,y=0,ox=0,oy=0;function createStar(x,y){var t=document.createElement('div');t.className='star';t.textContent='☆';t.style.left=x+'px';t.style.top=y+'px';t.style.visibility='hidden';document.body.appendChild(t);return t;}for(var i=0;i<n;i++){e[i]=createStar(-100,-100);sx[i]=false;sy[i]=false;}function update(){if(Math.abs(x-ox)>1||Math.abs(y-oy)>1){ox=x;oy=y;for(var i=0;i<n;i++){if(sy[i]===false){e[i].style.left=x+'px';e[i].style.top=y+'px';e[i].style.visibility='visible';sy[i]=y;sx[i]=x;break;}}}for(var i=0;i<n;i++){if(sy[i]!==false){sy[i]-=1;sx[i]+=(Math.random()-0.5)*2;if(sy[i]<0||sx[i]<0||sx[i]>window.innerWidth){e[i].style.visibility='hidden';sy[i]=false;}else{e[i].style.top=sy[i]+'px';e[i].style.left=sx[i]+'px';}}}}window.starsInterval=setInterval(update,20);document.onmousemove=function(t){x=t.pageX;y=t.pageY;};}catch(err){alert('Cursor stars error: '+err.message);}})();">
-          <span>stars falling.JS</span>
+          <span>STARSFALLING.JS</span>
         </a>
       </div>
 
+<div class="bookmarklet">
+  <a href="javascript:(function(){
+    const e=[
+      /* ========================================================= 1. SENTIMENTAL / BLUSH ========================================================= */
+      'amor','amar','amo','ama','amando','amado','amada','amores',
+      'paixao','paixão','paixoes','apaixonado','apaixonada','apaixonar','apaioxonados','apaioxonadas',
+      'desejo','desejos','desejar','deseja','desejando','desejado','desejada','desejados','desejadas',
+      'querer','quero','quer','querendo',
+      'carinho','carinhosa','carinhoso','carinhos','carinhosas','carinhosos','carinhosamente',
+      'ternura','terno','terna','afeto','afetivo','afetiva','afetivos','afetivas',
+      'saudade','saudades','falta','faltas',
+      'love','loved','loving','lover','beloved','loves',
+      'desire','desired','desiring','want','wanted','wanting',
+      'adore','adores','adoring','adored','cherish','cherished','cherishing',
+      'miss','missed','missing','devotion','romance','romantic','romântico','romântica','promessa','espera',
+      /* ========================================================= 2. CORPO / CONTATO / INTIMIDADE ========================================================= */
+      'coração','coracao','corações','alma','body','bodies','skin','pele','pelinha',
+      'toque','tocar','tocando','toques','touch','touching',
+      'beijo','beijar','beijando','beijos','kiss','kisses','kissing',
+      'abraço','abraco','abraçar','abraçando','abraços','hug','hugs','hugging','hold','held','holding',
+      'suspiro','suspiros','sigh','sighs','lágrima','lagrima','lágrimas','tear','tears',
+      'respiração','fôlego','sopro','breath','breathe','breathing',
+      'pulse','pulso','pulsar','calor','morno','morninho',
+      /* ========================================================= 3. ESTADO EMOCIONAL / HUMOR ========================================================= */
+      'feliz','felizes','felicidade','happy','happier','happiest','happiness',
+      'alegria','alegre','joy','joyful','joyous','triste','tristes','tristeza',
+      'etéreo','etérea','etéreas','etéreos','ethereal','glow','glowing','sutil','sutilmente','sutileza','sutilzinha',
+      'veludo','seda','pérola','veludos','sedas','pérolas','haze','blur','desfoque','véu','fluido','fluidez',
+      'softly','slowly','gently','tenderly','stillness','quietude',
+      /* ========================================================= 4. TEMPO / MEMÓRIA / AUSÊNCIA ========================================================= */
+      'memória','memoria','memórias','memory','memories','lembrar','lembro','lembrei','lembrança','lembranças','remember','remembered',
+      'esquecer','esqueci','esquecido','esquecida','forget','forgot','ausência','ausencia','nostalgia','sempre','nunca','quase','talvez','always','forever','almost','maybe','tempo','demora','moment','passado',
+      /* ========================================================= 5. DELICADEZA / DIMINUTIVOS / CUIDADO ========================================================= */
+      'doce','doces','docinho','docinha','doçura','doçurinha','fofo','fofa','fofos','fofas','fofinho','fofinha','fofinhos','fofinhas',
+      'leve','levinho','levinha','leveza','levezinha','suave','suavinho','suavinha','afago','afagar','afagada','aconchego','aconchegar','acolhida',
+      'cuidado','cuidar','cuidadosamente','brandura','mansidão','ternamente','terníssimo','terníssima','meiguice','meiguinha',
+      /* ========================================================= 6. POÉTICO / SENSORIAL / ESTÉTICA BLUSH ========================================================= */
+      'etérea','etéreamente','ethereal','luminoso','luminosa','luminosidade','luminous','radiant','claridade','clarão','clarão-doce','glow','glowing',
+      'delicado','delicada','delicadeza','veludo','seda','pérola','perolado','marfim','velvet','silk','pearl','ivory',
+      'rosa','rosado','rosada','aveludado','aveludada','aveludamento','translúcido','translúcida','opaco','opacidade','neblina','bruma','névoa','haze','blur','desfoque','véu','fluido','fluidez','softly','slowly','gently','tenderly','stillness','quietude',
+      /* ========================================================= 7. SONHO / INTERIORIDADE / PRESENÇA ========================================================= */
+      'sonho','sonhar','sonhando','sonhos','dream','dreams','dreamed','dreaming','daydream','sonhador','sonhadora','devaneio','devaneios','epifania','epifanias','revelação','revelações','atenção','escuta','attention','consciência','inconsciência','sensação','sensível','sensibilidade','sensívelzinha','intuição','intuído','intuída','íntimo','intimidade','presença','presenças','presença-viva','inner','within','wonder','awe','aliveness','becoming',
+      /* ========================================================= 8. LINGUAGEM / PROCESSO / ARQUIVO ========================================================= */
+      'atravessado','atravessada','atravessamento','atravessamentos','rasura','rasurado','rasurada','rasurando','fragmento','fragmentos','fragmentado','fragmentada','fragmentação','camada','camadas','sobreposição','sobreposições','vestígio','vestígios','arquivo','arquivos','arquivar','arquivamento','gesto','gestual','traço','traços','marca','marcas','texto','textual','corpo-texto','texto-corpo','imagem','imagem-texto','processo','processual','procedimento','experimento','ensaio','ensaístico','ensaística','materialidade','matéria','ficção','fricção','tensão','intervalo','intervalos','entre','entremeio','limiar','limiares','narrativa','discurso','linguagem','dizível','indizível','silenciamento',
+      /* ========================================================= 9. NATUREZA SUAVE / CONTEMPLAÇÃO ========================================================= */
+      'campo','campos','prado','prados','grama','relva','folha','folhas','galho','galhos','raiz','raízes','ave','aves','pássaro','pássaros','água','aguada','riacho','córrego','pedra','pedras','terra','chão','trilha','caminhada','orvalho','orvalhado','florescer','florescente','amanhecer','amanhecido','entardecer','entardecido','lua','luar','luazinha','estrela','estrelas','vento','céu-rosado',
+      /* ========================================================= 10. SOMBRA / INTENSIDADE / MELANCOLIA ========================================================= */
+      'fenda','fendas','quebra','quebrada','ruptura','rupturas','presságio','presságios','sombra','sombras','escuro','escuridão','abismo','abismos','febre','ardor','fogo','incêndio','cinza','cinzas','noite','noites','madrugada','insônia','eco','ecos','melancolia','melancólica','solidão'
+    ];
+
+    const t=new RegExp('(^|[^\\p{L}])(' + e.join('|') + ')(?=[^\\p{L}]|$)','giu');
+
+    document.querySelectorAll('p,h1,h2,h3,li,span,a,div').forEach(el=>{
+      if(el.children.length===0 && el.textContent.trim()){
+        el.innerHTML = el.innerHTML.replace(
+          t,
+          '$1<span style=&quot;text-shadow:0 0 8px #f6d8e7,0 0 12px #cd75a1&quot;>$2</span>'
+        );
+      }
+    });
+  })();">
+    <span>BLUSH-HIGHLIGHTS.JS</span>
+  </a>
+</div>
+
+
       <!-- exemplos -->
+      <div class="bookmarklet"><a href="javascript:(function(){if(!window.__blurLevel)window.__blurLevel=0;const styles=document.getElementById('blur-style');if(styles)styles.remove();window.__blurLevel=(window.__blurLevel+1)%4;if(window.__blurLevel===0)return;const blurs=['blur(0.8px) brightness(1.1)','blur(2px) brightness(1.15)','blur(4px) brightness(1.2)'];const shadows=['0 0 3px rgba(255,192,203,0.5)','0 0 6px rgba(255,192,203,0.7)','0 0 10px rgba(255,192,203,0.9)'];const s=document.createElement('style');s.id='blur-style';s.textContent=`body{filter:${blurs[window.__blurLevel-1]}!important}*{text-shadow:${shadows[window.__blurLevel-1]}!important}`;document.head.appendChild(s)})();"><span>SOFT-BLUR.JS</span></a></div>
+
+
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>      
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>      
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
+      <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
       <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
       <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
       <div class="bookmarklet"><a href="javascript:(function(){})();"><span>teste.JS</span></a></div>
